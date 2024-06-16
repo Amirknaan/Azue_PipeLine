@@ -52,3 +52,4 @@ steps:
 - script: |
     echo "Build version: 1.0.$(Build.BuildId).$(patchVersion)"
   displayName: 'Print New Version'
+
