@@ -5,8 +5,11 @@ pool: default
 
 variables:
   buildConfiguration: 'Release'
+  major: 1
+  minor: 0
   patchVersion: 1
   countPatch: $[counter(variables['patchVersion'], 1)]
+  Version: '$major.$minor.$(countPatch)'
 
 steps:
 
@@ -25,12 +28,6 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
   displayName: 'Build the project'
 
-# Increment the version number
-- script: |
-    echo "##vso[task.setvariable variable=countPatch]$(Build.BuildId)"
-    echo "New build number: $(Build.BuildId)"
-  displayName: 'Increment Version Number'
-
 # Pack the project into a NuGet package
 - task: DotNetCoreCLI@2
   inputs:
@@ -38,7 +35,10 @@ steps:
     packagesToPack: '**/*.csproj'
     configuration: $(buildConfiguration)
     outputDir: '$(Build.ArtifactStagingDirectory)'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'countPatch'
   displayName: 'Pack the project into a NuGet package'
+  
 
 # Publish the package to Azure Artifacts
 - task: NuGetCommand@2
