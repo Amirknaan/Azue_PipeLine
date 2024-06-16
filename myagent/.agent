@@ -1,0 +1,9 @@
+﻿{
+  "acceptTeeEula": true,
+  "agentId": 9,
+  "agentName": "amir-X540LA",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://dev.azure.com/aknaan/",
+  "workFolder": "/home/amir/Documents/infinity/git/devops/projects/3project/myagent"
+}
