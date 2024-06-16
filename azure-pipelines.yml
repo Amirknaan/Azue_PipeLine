@@ -1,5 +1,5 @@
 trigger:
-- main/dev
+- main
 
 pool: default
 
@@ -61,12 +61,11 @@ jobs:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
   steps:
 
-# Restore dependencies
-  - task: DotNetCoreCLI@2
+  - task: SonarQubePrepare@6
     inputs:
-      command: 'restore'
-      projects: '**/*.csproj'
-    displayName: 'Restore dependencies'
+      SonarQube: 'sonarquve_testing'
+      scannerMode: 'MSBuild'
+      projectKey: 'First_Pipeline_First_Pipeline_AZAg3zzpSAQ0YqaAZSLi'
 
 # Build the project
   - task: DotNetCoreCLI@2
@@ -76,11 +75,9 @@ jobs:
       arguments: '--configuration $(buildConfiguration)'
     displayName: 'Build the project'
 
-  - task: SonarQubePrepare@6
+  - task: SonarQubeAnalyze@6
     inputs:
-      SonarQube: 'sonarquve_testing'
-      scannerMode: 'MSBuild'
-      projectKey: 'First_Pipeline_First_Pipeline_AZAg3zzpSAQ0YqaAZSLi'
+      jdkversion: 'JAVA_HOME_17_X64'
 
 # Pack the project into a NuGet package
   - task: DotNetCoreCLI@2
@@ -108,3 +105,6 @@ jobs:
       echo "Build version: 1.0.$(Build.BuildId).$(patchVersion)"
     displayName: 'Print New Version'
 
+  - task: SonarQubePublish@6
+    inputs:
+      pollingTimeoutSec: '300'
