@@ -8,7 +8,7 @@ variables:
   major: 1
   minor: 0
   countPatch: $[counter(variables['minor'], 1)]
-  nugetVersion: '$major.$minor.$(countPatch)'
+  nugetVersion: '$(major).$(minor).$(countPatch)'
 
 steps:
 
