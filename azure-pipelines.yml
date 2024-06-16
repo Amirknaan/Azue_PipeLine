@@ -9,11 +9,6 @@ variables:
 
 steps:
 
-# Verify .NET SDK installation
-- script: |
-    dotnet --info
-  displayName: 'Verify .NET SDK Installation'
-
 # Restore dependencies
 - task: DotNetCoreCLI@2
   inputs:
