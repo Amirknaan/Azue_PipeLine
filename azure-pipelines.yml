@@ -6,6 +6,7 @@ pool: default
 variables:
   buildConfiguration: 'Release'
   patchVersion: 1
+  countPatch: $[counter(variables['patchVersion'], 1)]
 
 steps:
 
@@ -26,7 +27,7 @@ steps:
 
 # Increment the version number
 - script: |
-    echo "##vso[task.setvariable variable=buildNumber]$(Build.BuildId)"
+    echo "##vso[task.setvariable variable=countPatch]$(Build.BuildId)"
     echo "New build number: $(Build.BuildId)"
   displayName: 'Increment Version Number'
 
