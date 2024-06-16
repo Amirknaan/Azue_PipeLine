@@ -1,2 +1,0 @@
-#!/bin/sh
-mono /home/amir/Documents/infinity/git/devops/projects/3project/myagent/_tool/NuGet/4.9.6/x64/nuget.exe "$@"
