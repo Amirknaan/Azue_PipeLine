@@ -7,8 +7,7 @@ variables:
   buildConfiguration: 'Release'
   major: 1
   minor: 0
-  patchVersion: 1
-  countPatch: $[counter(variables['patchVersion'], 1)]
+  countPatch: $[counter(variables['minor'], 1)]
   Version: '$major.$minor.$(countPatch)'
 
 steps:
@@ -36,7 +35,7 @@ steps:
     configuration: $(buildConfiguration)
     outputDir: '$(Build.ArtifactStagingDirectory)'
     versioningScheme: 'byEnvVar'
-    versionEnvVar: 'countPatch'
+    versionEnvVar: 'Version'
   displayName: 'Pack the project into a NuGet package'
   
 
