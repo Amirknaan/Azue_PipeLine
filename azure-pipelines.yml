@@ -63,10 +63,9 @@ jobs:
 
   - task: SonarQubePrepare@6
     inputs:
-      SonarQube: 'sonarquve_testing'
-
+      SonarQube: 'sonarqube_testing'
       scannerMode: 'MSBuild'
-      projectKey: 'First_Pipeline_First_Pipeline_AZAg3zzpSAQ0YqaAZSLi'
+      projectKey: 'First_Pipeline_First_Pipeline_AZAlWGJKRTEg2Zk1gXWO'
 
 # Build the project
   - task: DotNetCoreCLI@2
