@@ -2,7 +2,7 @@ trigger:
 - main
 - dev
 
-pool: default
+pool: new_pool
 
 variables:
   buildConfiguration: 'Release'
