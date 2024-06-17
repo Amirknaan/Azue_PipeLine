@@ -60,19 +60,11 @@ jobs:
 - job: B
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
   steps:
-  - task: JavaToolInstaller@0
-    inputs:
-      versionSpec: '17'
-      jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'LocalDirectory'
-      jdkFile: '/home/amir/Downloads/jdk-17_linux-aarch64_bin.tar.gz'
-      jdkDestinationDirectory: '/usr/bin/'
-      cleanDestinationDirectory: false
-      createExtractDirectory: false
 
   - task: SonarQubePrepare@6
     inputs:
-      SonarQube: 'sonarquve_testing'
+      SonarQube: 'sonarqube_testing'
+
       scannerMode: 'MSBuild'
       projectKey: 'First_Pipeline_First_Pipeline_AZAg3zzpSAQ0YqaAZSLi'
 
@@ -98,7 +90,10 @@ jobs:
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'nugetVersion'
     displayName: 'Pack the project into a NuGet package'
-  
+    
+  - task: SonarQubePublish@6
+    inputs:
+      pollingTimeoutSec: '300'
 
 # Publish the package to Azure Artifacts
   - task: NuGetCommand@2
@@ -114,6 +109,3 @@ jobs:
       echo "Build version: 1.0.$(Build.BuildId).$(patchVersion)"
     displayName: 'Print New Version'
 
-  - task: SonarQubePublish@6
-    inputs:
-      pollingTimeoutSec: '300'
