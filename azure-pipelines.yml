@@ -58,7 +58,7 @@ jobs:
     displayName: 'Print New Version'
 
 - job: B
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   steps:
   - task: JavaToolInstaller@0
     inputs:
