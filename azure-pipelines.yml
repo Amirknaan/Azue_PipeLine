@@ -60,6 +60,7 @@ jobs:
 - job: B
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   steps:
+  
 
   - task: SonarQubePrepare@6
     inputs:
