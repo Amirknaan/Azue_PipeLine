@@ -1,5 +1,5 @@
 trigger:
-- main
+- master
 
 pool: default
 
@@ -58,7 +58,7 @@ jobs:
     displayName: 'Print New Version'
 
 - job: B
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   steps:
 
   - task: SonarQubePrepare@6
