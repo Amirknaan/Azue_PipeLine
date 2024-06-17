@@ -76,7 +76,7 @@ jobs:
       arguments: '--configuration $(buildConfiguration)'
     displayName: 'Build the project'
 
-  - task: SonarQubeAnalyze@6
+  - task: SonarQubeAnalyze@5
   
   - task: SonarQubePublish@6
     inputs:
