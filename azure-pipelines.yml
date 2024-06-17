@@ -1,8 +1,7 @@
 trigger:
 - main
-- dev
 
-pool: new_pool
+pool: default
 
 variables:
   buildConfiguration: 'Release'
@@ -65,6 +64,7 @@ jobs:
   - task: SonarQubePrepare@6
     inputs:
       SonarQube: 'sonarqube_testing'
+
       scannerMode: 'MSBuild'
       projectKey: 'First_Pipeline_First_Pipeline_AZAg3zzpSAQ0YqaAZSLi'
 
@@ -76,15 +76,9 @@ jobs:
       arguments: '--configuration $(buildConfiguration)'
     displayName: 'Build the project'
 
-  
   - task: SonarQubeAnalyze@6
     inputs:
       jdkversion: 'JAVA_HOME_17_X64'
-  
-  - task: SonarQubePublish@6
-    inputs:
-      pollingTimeoutSec: '300'
-
 
 # Pack the project into a NuGet package
   - task: DotNetCoreCLI@2
@@ -96,7 +90,10 @@ jobs:
       versioningScheme: 'byEnvVar'
       versionEnvVar: 'nugetVersion'
     displayName: 'Pack the project into a NuGet package'
-  
+    
+  - task: SonarQubePublish@6
+    inputs:
+      pollingTimeoutSec: '300'
 
 # Publish the package to Azure Artifacts
   - task: NuGetCommand@2
