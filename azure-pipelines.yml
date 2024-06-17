@@ -62,7 +62,7 @@ jobs:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
   steps:
 
-  - task: SonarQubePrepare@6
+  - task: SonarQubePrepare@5
     inputs:
       SonarQube: 'sonarquve_testing'
       scannerMode: 'MSBuild'
@@ -81,7 +81,7 @@ jobs:
     inputs:
       jdkversion: 'JAVA_HOME_17_X64'
   
-  - task: SonarQubePublish@6
+  - task: SonarQubePublish@5
     inputs:
       pollingTimeoutSec: '300'
 
