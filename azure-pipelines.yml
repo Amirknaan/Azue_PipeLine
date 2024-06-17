@@ -60,19 +60,10 @@ jobs:
 - job: B
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   steps:
-  - task: JavaToolInstaller@0
-    inputs:
-      versionSpec: '17'
-      jdkArchitectureOption: 'x64'
-      jdkSourceOption: 'LocalDirectory'
-      jdkFile: '/home/amir/Downloads/jdk-17_linux-aarch64_bin.tar.gz'
-      jdkDestinationDirectory: '/usr/bin/'
-      cleanDestinationDirectory: false
-      createExtractDirectory: false
 
   - task: SonarQubePrepare@6
     inputs:
-      SonarQube: 'sonarquve_testing'
+      SonarQube: 'sonarqube_testing'
       scannerMode: 'MSBuild'
       projectKey: 'First_Pipeline_First_Pipeline_AZAg3zzpSAQ0YqaAZSLi'
 
